@@ -26,11 +26,24 @@ services:
     environment:
       TZ: America/NEW_YORK
       WEBPASSWORD_FILE: /run/secrets/pihole_password
-    secrets: [pihole_password]
+      # TODO: build a github actions that deploys this to the raspberryPi
+      # Also build a cronjob/action that periodically updates the ads list
+      DHCP_ACTIVE: 'true'
+      DHCP_START: /run/secrets/dhcp_start
+      DHCP_END: /run/secrets/dhcp_end
+      DHCP_ROUTER: /run/secrets/dchp_router
+    secrets: [pihole_password, dhcp_start, dhcp_end, dhcp_router]
     volumes: [./etc-pihole:/etc/pihole, ./etc-dnsmasq.d:/etc/dnsmasq.d]
     cap_add:
       - NET_ADMIN  # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
 secrets:
+  # These files need to exist in the same location as this yml file
   pihole_password:
     file: pihole_password.txt  # This needs to exist in the local directory
+  dhcp_start:
+    file: dhcp_start.txt
+  dhcp_end:
+    file: dhcp_end.txt
+  dhcp_router:
+    file: dhcp_router.txt
