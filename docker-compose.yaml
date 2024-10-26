@@ -29,9 +29,9 @@ services:
       # TODO: build a github actions that deploys this to the raspberryPi
       # Also build a cronjob/action that periodically updates the ads list
       DHCP_ACTIVE: 'true'
-      DHCP_START: /run/secrets/dhcp_start
-      DHCP_END: /run/secrets/dhcp_end
-      DHCP_ROUTER: /run/secrets/dchp_router
+      DHCP_START: 192.168.1.2
+      DHCP_END: 192.168.1.254
+      DHCP_ROUTER: 192.168.1.1
     secrets: [pihole_password, dhcp_start, dhcp_end, dhcp_router]
     volumes: [./etc-pihole:/etc/pihole, ./etc-dnsmasq.d:/etc/dnsmasq.d]
     cap_add:
@@ -49,9 +49,3 @@ secrets:
   # These files need to exist in the same location as this yml file
   pihole_password:
     file: pihole_password.txt  # This needs to exist in the local directory
-  dhcp_start:
-    file: dhcp_start.txt
-  dhcp_end:
-    file: dhcp_end.txt
-  dhcp_router:
-    file: dhcp_router.txt
