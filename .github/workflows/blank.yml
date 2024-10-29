@@ -30,7 +30,3 @@ jobs:
         env:
           PIHOLE_PASSWORD: ${{ secrets.PIHOLE_PASSWORD }}
         run: docker compose up -d
-      - name: Update gravity domains
-        run: sudo sqlite3 /etc/pihole/gravity.db "INSERT INTO adlist (address, enabled,
-          comment) VALUES ('https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.plus.txt',
-          1, 'comment');"

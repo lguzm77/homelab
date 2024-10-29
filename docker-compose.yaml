@@ -28,7 +28,7 @@ services:
       TZ: America/NEW_YORK
       WEBPASSWORD_FILE: /run/secrets/PIHOLE_PASSWORD
       DNSSEC: 'true'
-      PIHOLE_DOMAIN: "pi.lev.lan"
+      PIHOLE_DOMAIN: pi.lev.lan
       DHCP_ACTIVE: 'true'
       DHCP_START: 192.168.1.2
       DHCP_END: 192.168.1.254
