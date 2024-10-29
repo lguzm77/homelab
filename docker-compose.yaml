@@ -39,14 +39,14 @@ services:
       - NET_ADMIN  # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
     # TODO: add a pihole metrics exporter and configure grafana
-  node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter
-    command: [--path.rootfs=/host]
-    network_mode: host
-    pid: host
-    restart: unless-stopped
-    volumes: ['/:/host:ro,rslave']
+  # node_exporter:
+  #   image: quay.io/prometheus/node-exporter:latest
+  #   container_name: node_exporter
+  #   command: [--path.rootfs=/host]
+  #   network_mode: host
+  #   pid: host
+  #   restart: unless-stopped
+  #   volumes: ['/:/host:ro,rslave']
 secrets:
   # These files need to exist in the same location as this yml file
   pihole_password:
