@@ -29,4 +29,4 @@ jobs:
       - name: Spin up docker compose
         env:
           PIHOLE_PASSWORD: ${{ secrets.PIHOLE_PASSWORD }}
-        run: docker compose down && docker compose up -d
+        run: docker compose down && docker compose up -d --remove-orphans
