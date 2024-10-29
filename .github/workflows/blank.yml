@@ -22,12 +22,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      - name: cleanup old checkout
+        run: chmod +w -R ${GITHUB_WORKSPACE}; rm -rf ${GITHUB_WORKSPACE}/*;
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         env:
           PIHOLE_PASSWORD: ${{ secrets.PIHOLE_PASSWORD }}
         run: docker compose up -d
-      
       - name: Update gravity domains
-        run: sudo sqlite3 /etc/pihole/gravity.db "INSERT INTO adlist (address, enabled, comment) VALUES ('https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.plus.txt', 1, 'comment');"
+        run: sudo sqlite3 /etc/pihole/gravity.db "INSERT INTO adlist (address, enabled,
+          comment) VALUES ('https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.plus.txt',
+          1, 'comment');"
