@@ -39,12 +39,6 @@ services:
       - NET_ADMIN  # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
     # TODO: add a pihole metrics exporter and configure grafana
-  grafana:
-    image: grafana/grafana-oss
-    container_name: grafana
-    restart: unless-stopped
-    ports: [3000:3000]
-    volumes: [grafana-storage:/var/lib/grafana]
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
@@ -53,8 +47,6 @@ services:
     pid: host
     restart: unless-stopped
     volumes: ['/:/host:ro,rslave']
-volumes:
-  grafana-storage: {}
 secrets:
   # These files need to exist in the same location as this yml file
   pihole_password:
