@@ -50,4 +50,4 @@ services:
 secrets:
   # These files need to exist in the same location as this yml file
   pihole_password:
-    file: pihole_password.txt  # This needs to exist in the local directory
+    environment: PIHOLE_PASSWORD  # environment variable
