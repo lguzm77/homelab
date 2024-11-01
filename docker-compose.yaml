@@ -1,6 +1,13 @@
 ---
-version: '3.8'
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+networks:
+  pihole_network:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - gateway: 192.168.1.1  # First IP address of the network
+          subnet: 192.168.1.2/24
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -22,9 +29,12 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    network_mode: host  # for DHCP server 
+    networks:
+      pihole_network:
+        ipv4_address: 192.168.1.161
+    dns: [127.0.0.1, 1.1.1.1]
     environment:
-      FTLCONF_LOCAL_IPV4: 192.168.1.161
+      FTLCONF_LOCAL_IPV4: 192.168.1.161  # IP of the host in the network
       TZ: America/NEW_YORK
       WEBPASSWORD_FILE: /run/secrets/pihole_password
       DNSSEC: 'true'
