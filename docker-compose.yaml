@@ -3,6 +3,19 @@ networks:
   lev_network:
     external: true  # we will create the network externally
 services:
+  unbound:
+    container_name: unbound
+    image: mvance/unbound-rpi:latest
+    hostname: unbound
+    networks:
+      lev_network:
+        ipv4_address: 192.168.1.166
+    ports: [5335/tcp, 5335/udp]
+    # volumes: [./unbound/conf:/etc/unbound]  # custom unbound configuration
+    environment:
+      TZ: America/NEW_YORK
+      ServerIP: 192.168.1.166
+    restart: unless-stopped
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
@@ -24,6 +37,7 @@ services:
       DHCP_START: 192.168.1.2
       DHCP_END: 192.168.1.254
       DHCP_ROUTER: 192.168.1.1
+      PIHOLE_DNS: 192.168.1.166#5335  # unbound dns ip address
     secrets: [pihole_password]
     volumes:
       - ~/homelab/etc-pihole:/etc/pihole
