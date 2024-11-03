@@ -1,54 +1,36 @@
 ---
-version: '3.8'
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+networks:
+  lev_network:
+    external: true  # we will create the network externally
 services:
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    ports: [9090:9090]
-    command: [--config.file=/etc/prometheus/prometheus.yml]
-    volumes: [./prometheus.yml:/etc/prometheus/prometheus.yml:ro]
-    depends_on: [cadvisor]
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor
-    ports: [8080:8080]
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-    depends_on: [pihole]
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    network_mode: host  # for DHCP server 
+    hostname: pihole
+    domainname: lev
+    mac_address: ec:ca:08:19:09:27
+    dns: [127.0.0.1, 1.1.1.1]
+    ports: [443/tcp, 53/tcp, 53/udp, 67/udp, 80/tcp]  # expose all pihole ports.
+    networks:
+      lev_network:
+        ipv4_address: 192.168.1.165  # IP of the pihole container 
     environment:
-      FTLCONF_LOCAL_IPV4: 192.168.1.161
+      FTLCONF_LOCAL_IPV4: 192.168.1.165  # must match with pihole.networks.pihole_network.ipv4_address
       TZ: America/NEW_YORK
       WEBPASSWORD_FILE: /run/secrets/pihole_password
       DNSSEC: 'true'
-      PIHOLE_DOMAIN: pi.lev.lan
+      PIHOLE_DOMAIN: pi.lan.lev
       DHCP_ACTIVE: 'true'
       DHCP_START: 192.168.1.2
       DHCP_END: 192.168.1.254
       DHCP_ROUTER: 192.168.1.1
     secrets: [pihole_password]
-    volumes: [/etc-pihole:/etc/pihole, /etc-dnsmasq.d:/etc/dnsmasq.d]
+    volumes:
+      - ~/homelab/etc-pihole:/etc/pihole
+      - ~/home/etc-dnsmasq.d:/etc/dnsmasq.d
     cap_add:
       - NET_ADMIN  # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
-    # TODO: add a pihole metrics exporter and configure grafana
-  node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter
-    ports: [9100:9100]
-    command: [--path.rootfs=/host]
-    network_mode: host
-    pid: host
-    restart: unless-stopped
-    volumes: ['/:/host:ro,rslave']
 secrets:
-  # These files need to exist in the same location as this yml file
   pihole_password:
     environment: PIHOLE_PASSWORD  # environment variable
