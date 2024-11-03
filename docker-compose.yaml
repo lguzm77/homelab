@@ -37,7 +37,7 @@ services:
       DHCP_START: 192.168.1.2
       DHCP_END: 192.168.1.254
       DHCP_ROUTER: 192.168.1.1
-      PIHOLE_DNS: 192.168.1.166#5335  # unbound dns ip address
+      PIHOLE_DNS_: 192.168.1.166#5335  # unbound dns ip address
     secrets: [pihole_password]
     volumes:
       - ~/homelab/etc-pihole:/etc/pihole
