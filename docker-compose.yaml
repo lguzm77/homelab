@@ -12,8 +12,7 @@ services:
       lev_network:
         ipv4_address: 192.168.1.69
     ports: [5335/tcp, 5335/udp]
-    # TODO: investigate more complex unbound configurations
-    # volumes: [./unbound/conf:/etc/unbound]  # custom unbound configuration
+    volumes: [./unbound:/etc/unbound]  # custom unbound configuration
     environment:
       TZ: America/NEW_YORK
       ServerIP: 192.168.1.69
