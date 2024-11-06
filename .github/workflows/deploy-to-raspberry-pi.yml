@@ -26,10 +26,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: cleanup old checkout
         run: sudo chmod +w -R ${GITHUB_WORKSPACE}; sudo rm -rf ${GITHUB_WORKSPACE}/*;
+
       - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
-      - name: Spin up docker compose
+      - name: deploy pihole plus unbound 
         env:
           PIHOLE_PASSWORD: ${{ secrets.PIHOLE_PASSWORD }}
-        run: docker compose down && docker compose up -d --remove-orphans
+        run: cd ./pi-hole; docker compose down && docker compose up -d --remove-orphans
