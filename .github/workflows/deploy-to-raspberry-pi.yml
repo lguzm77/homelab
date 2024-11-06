@@ -36,4 +36,4 @@ jobs:
         run: cd ./pi-hole; docker compose down && docker compose up -d --remove-orphans
 
       - name: deploy wireguard
-        run: cd; cd ./wireguard; docker compose down && docker compose up -d --remove-orphans 
+        run: cd ./wireguard; docker compose down && docker compose up -d --remove-orphans 
