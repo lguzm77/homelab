@@ -18,6 +18,6 @@ services:
       PASSWORD_HASH: $$2a$$12$$eQmxub1MtDItGHUfnwt40eil0picMSWWqMetjGaUdlZ/8S9WvOLlK
       WG_PORT: 51820  # must match one of the specified ports above
       WG_DEFAULT_ADDRESS: 192.168.1.x
-      WG_DEFUALT_DNS: 192.168.1.69#5335  # must match unbound's IP address 
+      WG_DEFAULT_DNS: 192.168.1.69#5335  # must match unbound's IP address 
       WG_ALLOWED_IPS: 192.168.1.0/24  # only allow in-network traffic
       WG_HOST: vpn.mylab.com
