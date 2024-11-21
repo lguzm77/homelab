@@ -20,3 +20,4 @@ services:
       WG_DEFAULT_DNS: 192.168.1.69#5335  # must match unbound's IP address 
       WG_ALLOWED_IPS: 192.168.1.0/24  # only allow in-network traffic
       WG_HOST: vpn.mylab.com
+      WG_MTU: 1200
