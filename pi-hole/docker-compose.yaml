@@ -33,12 +33,12 @@ services:
       TZ: America/NEW_YORK
       WEBPASSWORD_FILE: /run/secrets/pihole_password
       DNSSEC: 'true'
-      PIHOLE_DOMAIN: pi.lan.lev
+      PIHOLE_DOMAIN: technolev.lan
       DHCP_ACTIVE: 'true'
       DHCP_START: 192.168.1.2
       DHCP_END: 192.168.1.254
       DHCP_ROUTER: 192.168.1.1
-      PIHOLE_DNS_: 192.168.1.69#5335 # must match unbound's ip address
+      PIHOLE_DNS_: 192.168.1.69#5335  # must match unbound's ip address
     secrets: [pihole_password]
     depends_on: [unbound]
     volumes:
