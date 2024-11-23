@@ -19,5 +19,5 @@ services:
       WG_PORT: 51820  # must match one of the specified ports above
       WG_DEFAULT_DNS: 192.168.1.69#5335  # must match unbound's IP address 
       WG_ALLOWED_IPS: 0.0.0.0/0
-      WG_HOST: vpn.mylab.com
+      WG_HOST: vpn.technolev.work
       WG_MTU: 1200
