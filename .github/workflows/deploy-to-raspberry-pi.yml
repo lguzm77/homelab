@@ -22,3 +22,6 @@ jobs:
 
       - name: deploy wireguard
         run: cd ./wireguard; docker compose down && docker compose up -d --remove-orphans
+
+      - name: deploy traefik
+        run: cd ./traefik; docker compose down && docker compose up -d --remove-orphans
