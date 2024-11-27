@@ -40,7 +40,7 @@ services:
       DHCP_ROUTER: 192.168.1.1
       PIHOLE_DNS_: 192.168.1.69#5335  # must match unbound's ip address
       DHCP_IPv6: 'true'
-      VIRTUAL_HOST: pihole.technolev.work
+      VIRTUAL_HOST: techno.lev
       WEBTHEME: default-darker
     secrets: [pihole_password]
     depends_on: [unbound]
