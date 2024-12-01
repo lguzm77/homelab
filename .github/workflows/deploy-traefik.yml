@@ -1,23 +1,17 @@
 ---
-name: deploy-rasp-pi
+name: deploy-traefik
 on:
   push:
-    branches: [main]
-    paths-ignore: [init-scripts/**, grafana/**, README.md]
-  pull_request:
+    paths: [traefik/**]
     branches: [main]
   workflow_dispatch:
 jobs:
-  build:
+  deploy:
     runs-on: self-hosted
     steps:
-      - name: cleanup old checkout
+      - name: clean old checkout
         run: sudo chmod +w -R ${GITHUB_WORKSPACE}; sudo rm -rf ${GITHUB_WORKSPACE}/*;
       - uses: actions/checkout@v4
-      - name: deploy pihole plus unbound
-        env:
-          PIHOLE_PASSWORD: ${{ secrets.PIHOLE_PASSWORD }}
-        run: cd ./pi-hole; docker compose down && docker compose up -d --remove-orphans
       - name: deploy traefik
         env:
           CLOUDFARE_API_TOKEN: ${{ secrets.CLOUDFARE_API_TOKEN }}
