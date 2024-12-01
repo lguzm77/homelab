@@ -36,7 +36,7 @@ services:
       PIHOLE_DOMAIN: technolev.lan
       DHCP_ACTIVE: 'true'
       DHCP_START: 192.168.1.2
-      DHCP_END: 192.168.1.254
+      DHCP_END: 192.168.1.255
       DHCP_ROUTER: 192.168.1.1
       PIHOLE_DNS_: 192.168.1.69#5335  # must match unbound's ip address
       DHCP_IPv6: 'true'
