@@ -20,3 +20,4 @@
 - Maybe migrate to kubernetes - why not???
 - Add headscale as vpn solution
 
+- https://www.youtube.com/watch?v=F-9KWQByeU0 video showcasing how to deploy a production ready VPS
