@@ -11,3 +11,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: test
         run: sudo systemctl status ssh
+      - name: change port
+        run: cp /etc/ssh/sshd_config /etc/ssh/sshd_config.factory-defaults && sed -i "s/#Port 22/Port 22122/g" /etc/ssh/sshd_config ; systemctl restart sshd.service
