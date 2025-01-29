@@ -9,9 +9,5 @@ jobs:
       - name: clean old checkout
         run: sudo chmod +w -R ${GITHUB_WORKSPACE}; sudo rm -rf ${GITHUB_WORKSPACE}/*;
       - uses: actions/checkout@v4
-      - name: stop ssh
-        run: sudo systemctl stop ssh
-      - name: start ssh
-        run: sudo systemctl start ssh
       - name: test
-        run: sudo systemctl status ssh
+        run: sudo iptables -L
