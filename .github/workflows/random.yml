@@ -10,4 +10,6 @@ jobs:
         run: sudo chmod +w -R ${GITHUB_WORKSPACE}; sudo rm -rf ${GITHUB_WORKSPACE}/*;
       - uses: actions/checkout@v4
       - name: test
-        run: sudo iptables -L
+        run: sudo ufw enable
+      - name: enable ssh port
+        run: sudo ufw allow 22
