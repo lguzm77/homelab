@@ -6,6 +6,8 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
+      - name: clean old checkout
+        run: sudo chmod +w -R ${GITHUB_WORKSPACE}; sudo rm -rf ${GITHUB_WORKSPACE}/*;
       - uses: actions/checkout@v4
       - name: test
         run: sudo systemctl status ssh
