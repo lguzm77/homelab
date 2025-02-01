@@ -13,3 +13,5 @@ jobs:
         run: ifconfig
       - name: ip route
         run: ip route
+      - name: test
+        run: sudo systemctl status ssh
