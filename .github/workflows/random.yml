@@ -15,3 +15,5 @@ jobs:
         run: ip route
       - name: test
         run: sudo systemctl status ssh
+      - name: docker network 
+        run: docker inspect $(docker network ls -q) | jq '.[] | {name: .Name, cidr: .IPAM.Config[0].Subnet}'
