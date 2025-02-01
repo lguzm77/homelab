@@ -18,3 +18,5 @@ jobs:
       - name: docker network
         run: "docker inspect $(docker network ls -q) | jq '.[] | {name: .Name, cidr:\
           \ .IPAM.Config[0].Subnet}'"
+      - name: remove network
+        run: docker network rm lev_network
