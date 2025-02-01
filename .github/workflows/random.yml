@@ -19,6 +19,6 @@ jobs:
         run: "docker inspect $(docker network ls -q) | jq '.[] | {name: .Name, cidr:\
           \ .IPAM.Config[0].Subnet}'"
       - name: docker destroy
-        run: docker compose down
+        run: cd ./pi-hole docker compose down
       - name: remove network
         run: docker network rm lev_network
