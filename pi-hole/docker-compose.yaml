@@ -37,8 +37,8 @@ services:
       DHCP_START: 192.168.1.2
       DHCP_END: 192.168.1.255
       DHCP_ROUTER: 192.168.1.1
-      # Unbound's IP address, Quad9 and cloudfare as backup
-      PIHOLE_DNS_: 192.168.1.69#5335;9.9.9.9;1.1.1.1
+      # Unbound's IP address
+      PIHOLE_DNS_: 192.168.1.69#5335
       DHCP_IPv6: 'true'
       VIRTUAL_HOST: techno.lev
       WEBTHEME: default-darker
