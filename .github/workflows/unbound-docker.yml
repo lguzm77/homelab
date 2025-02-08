@@ -10,7 +10,7 @@ env:
   DOCKERFILE_PATH: ./pi-hole/self-made-unbound
 jobs:
   build-and-push-image:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest # TODO: figure out how you can run this in a self-hosted runner
     permissions:
       contents: read
       packages: write
