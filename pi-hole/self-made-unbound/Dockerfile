@@ -6,4 +6,4 @@ RUN apk add unbound
 COPY ./self-made-unbound.conf /etc/unbound/unbound.conf.d/pi-hole.conf
 
 # Run the server
-RUN sudo service unbound restart
+CMD ["service" , "unbound", "restart"]
