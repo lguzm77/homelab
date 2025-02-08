@@ -6,7 +6,7 @@ on:
     branches: [main]
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: self-made-unbound
+  IMAGE_NAME: ${{ github.repository }}_self-made-unbound
   DOCKERFILE_PATH: ./pi-hole/self-made-unbound
 jobs:
   build-and-push-image:
