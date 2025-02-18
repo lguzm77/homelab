@@ -7,7 +7,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik.yaml:/etc/traefik/traefik.yaml
-    networks: [lev_network]
+    networks:
+      lev_network:
+        ipv4_address: 192.168.1.227
     restart: unless-stopped
 networks:
   lev_network:
