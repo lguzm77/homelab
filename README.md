@@ -18,6 +18,7 @@
 - Add a firewall with sohos
 - Purchase more raspberry pis to allow High Availability of unbound
 - Maybe migrate to kubernetes - why not???
-- Add headscale as vpn solution
+- Add cloudfared, vpn.
+- Deploy grafana with LGTM stack.
 
 - https://www.youtube.com/watch?v=F-9KWQByeU0 video showcasing how to deploy a production ready VPS
