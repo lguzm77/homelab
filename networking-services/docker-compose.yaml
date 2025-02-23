@@ -3,6 +3,19 @@ networks:
   lev_network:
     external: true  # we will create the network externally
 services:
+  # Observability
+  grafana:
+    networks:
+      lev_network:
+        ipv4_address: 192.168.1.228
+    image: grafana/grafana-oss:main
+    container_name: grafana
+    restart: unless-stopped
+    ports: [3000:3000]
+    volumes: [./grafana-storage:/var/lib/grafana]
+    environment:
+      - GF_SERVER_ROOT_URL=http://my.grafana.server/
+      - GF_PLUGINS_PREINSTALL=grafana-clock-panel
   traefik:
     image: traefik:v3.1.5
     container_name: traefik-reverse-proxy
