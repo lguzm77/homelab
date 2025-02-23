@@ -58,6 +58,7 @@ services:
       FTLCONF_dhcp_start: 192.168.1.6
       FTLCONF_dhcp_end: 192.168.1.224
       FTLCONF_dhcp_router: 192.168.1.1
+      FTLCONF_dns_listeningMode: all
     secrets: [pihole_password]
     depends_on: [unbound]
     volumes: [./etc-pihole:/etc/pihole]
