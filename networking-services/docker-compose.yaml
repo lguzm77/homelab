@@ -2,6 +2,8 @@
 networks:
   lev_network:
     external: true  # we will create the network externally
+volumes:
+  grafana-storage: {}
 services:
   # Observability
   grafana:
@@ -12,7 +14,7 @@ services:
     container_name: grafana
     restart: unless-stopped
     ports: [3000:3000]
-    volumes: [./grafana-storage:/var/lib/grafana]
+    volumes: [grafana-storage:/var/lib/grafana]
     environment:
       - GF_SERVER_ROOT_URL=http://my.grafana.server/
       - GF_PLUGINS_PREINSTALL=grafana-clock-panel
