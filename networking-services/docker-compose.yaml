@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest  # v6
+    image: pihole/pihole:2025.02.4
     hostname: pihole
     domainname: lev
     mac_address: ec:ca:08:19:09:27
