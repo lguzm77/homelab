@@ -18,6 +18,10 @@ services:
     environment:
       - GF_SERVER_ROOT_URL=http://my.grafana.server/
       - GF_PLUGINS_PREINSTALL=grafana-clock-panel
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.grafana-http.rule=Host('grafana.technolev')
+      - traefik.http.routers.grafana-http.entrypoints=web  # port 80 as defined in the traefik dashboard 
   traefik:
     image: traefik:v3.1.5
     container_name: traefik-reverse-proxy

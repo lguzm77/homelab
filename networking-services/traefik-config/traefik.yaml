@@ -12,3 +12,7 @@ entrypoints:
     address: :80
   websecure:
     address: :443  # HTTPS port
+providers:
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    exposedByDefault: false
