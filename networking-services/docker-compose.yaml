@@ -2,13 +2,12 @@
 networks:
   lev_network:
     external: true  # we will create the network externally
-volumes:
-  grafana-storage: {}
 services:
   traefik:
-    image: traefik:v3.1.5
+    image: traefik:latest
     container_name: traefik-reverse-proxy
-    ports: [80:80, 8080:8080]
+    ports: [80:80, 8080:8080, 443:443]
+    security_opt: [no-new-privileges:true]
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik-config/traefik.yaml:/etc/traefik/traefik.yaml
