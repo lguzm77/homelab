@@ -29,6 +29,7 @@ services:
       ServerIP: 192.168.1.226
     restart: unless-stopped
   pihole:
+    env_file: [.env]
     container_name: pihole
     image: pihole/pihole:2025.02.4
     hostname: pihole
