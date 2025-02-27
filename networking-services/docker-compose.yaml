@@ -18,9 +18,9 @@ services:
     secrets: [cloudfare-token]
     env_file: [.env]
     environment:
-      - TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
-      - CF_API_EMAIL: your@email.com
-      - CF_DNS_API_TOKEN_FILE: /run/secrets/cloudfare-token
+      - TRAEFIK_DASHBOARD_CREDENTIALS=${TRAEFIK_DASHBOARD_CREDENTIALS}
+      - CF_API_EMAIL=your@email.com
+      - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudfare-token
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.entrypoints=http
