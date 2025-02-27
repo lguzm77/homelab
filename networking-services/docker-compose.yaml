@@ -35,8 +35,10 @@ services:
       - traefik.http.routers.traefik-secure.tls.domains[0].sans=*.technolev.work
       - traefik.http.routers.traefik-secure.service=api@internal
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik-config/traefik.yaml:/etc/traefik/traefik.yaml
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik-config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./traefik-config/acme.json:/etc/traefik/acme.json
+      - ./traefik-config/config.yml:/etc/traefik/config.yml:ro
     networks:
       lev_network:
         ipv4_address: 192.168.1.227
