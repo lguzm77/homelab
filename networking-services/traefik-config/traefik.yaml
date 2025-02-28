@@ -22,7 +22,7 @@ providers:
     endpoint: unix:///var/run/docker.sock
     exposedByDefault: false
   file:
-    filename: ./config.yml  # get a A+ rating from ssl labs testing
+    filename: /etc/traefik/config.yaml  # get a A+ rating from ssl labs testing
 certificateResolvers:
   cloudflare:
     acme:

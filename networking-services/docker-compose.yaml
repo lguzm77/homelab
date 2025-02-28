@@ -41,7 +41,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik-config/traefik.yaml:/etc/traefik/traefik.yaml:ro
       - ./traefik-config/acme.json:/etc/traefik/acme.json
-      - ./traefik-config/config.yml:/etc/traefik/config.yml:ro
+      - ./traefik-config/config.yaml:/etc/traefik/config.yaml:ro
     networks:
       lev_network:
         ipv4_address: 192.168.1.227
