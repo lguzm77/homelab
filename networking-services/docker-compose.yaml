@@ -25,7 +25,6 @@ services:
       - traefik.enable=true
       - traefik.http.routers.traefik.entrypoints=http
       - traefik.http.routers.traefik.rule=Host(`traefik-docker.technolev.work`)
-      # TODO: create the TRAEFIK_DASHBOARD_CREDENTIALS password
       - traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}  # must be defined in .env file
       - traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https
       - traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https
@@ -49,7 +48,7 @@ services:
     restart: unless-stopped
   unbound:
     container_name: unbound
-    image: mvance/unbound-rpi:latest
+    image: madnuttah/unbound:latest
     hostname: unbound
     networks:
       lev_network:
@@ -57,8 +56,7 @@ services:
     ports: [5335/tcp, 5335/udp]
     volumes: [./unbound-config/:/opt/unbound/etc/unbound/]  # custom unbound configuration
     environment:
-      TZ: America/NEW_YORK
-      ServerIP: 192.168.1.226
+      TZ: America/New_York
     restart: unless-stopped
   pihole:
     env_file: [.env]
