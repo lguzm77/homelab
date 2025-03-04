@@ -11,9 +11,7 @@ services:
     container_name: traefik-reverse-proxy
     ports:
       - 80:80  # HTTP port
-      - 8080:8080  # Traefik entrypoint, is this needed?
       - 443:443  # HTTPS port
-      - 10000:1000  # wireguard port 
     security_opt: [no-new-privileges:true]
     secrets: [cloudfare-token]
     env_file: [.env]
@@ -38,6 +36,7 @@ services:
       - traefik.http.routers.traefik-secure.tls.domains[0].sans=*.technolev.work
       - traefik.http.routers.traefik-secure.service=api@internal
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik-config/traefik.yaml:/traefik.yaml:ro
       - ./traefik-config/acme.json:/acme.json
