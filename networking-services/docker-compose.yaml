@@ -63,6 +63,7 @@ services:
     restart: unless-stopped
   dhcprelay:
     build: ./self-made-dhcp-relay
+    container_name: dhcprelay
     restart: unless-stopped
     network_mode: host
     command: -s 172.31.0.100

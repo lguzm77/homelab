@@ -10,7 +10,7 @@ services:
   grafana:
     networks:
       observability:
-        ipv4_address: 172.32.0.1
+        ipv4_address: 172.32.0.2
     image: grafana/grafana-oss:main
     container_name: grafana
     restart: unless-stopped
