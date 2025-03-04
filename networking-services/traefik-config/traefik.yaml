@@ -23,7 +23,7 @@ providers:
     exposedByDefault: false
   file:
     filename: /config.yaml  # get a A+ rating from ssl labs testing
-certificateResolvers:
+certificatesResolvers:
   cloudflare:
     acme:
       # caServer: https://acme-v02.api.letsencrypt.org/directory  # production (default)
