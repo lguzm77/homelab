@@ -6,17 +6,6 @@ networks:
   lev_network:
     external: true
 services:
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    env_file: [.env]
-    container_name: cloudflared
-    command: tunnel --no-autoupdate run
-    environment:
-      TZ: America/New_York
-      TUNNEL_TOKEN: ${CLOUDFLARED_TUNNEL_TOKEN}
-    networks:
-      lev_network:
-        ipv4_address: 192.168.1.228
   traefik:
     image: traefik:latest
     container_name: traefik-reverse-proxy
