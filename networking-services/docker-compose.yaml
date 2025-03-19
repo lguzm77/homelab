@@ -2,6 +2,7 @@
 secrets:
   cloudfare-token:
     file: ./cloudfare-token
+networks:
   lev_network:
     external: true
 services:
