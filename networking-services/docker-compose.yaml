@@ -2,11 +2,6 @@
 secrets:
   cloudfare-token:
     file: ./cloudfare-token
-networks:
-  backend:
-    ipam:
-      config:
-        - subnet: 172.31.0.0/16
   lev_network:
     external: true  # we will create the network externally
 services:
@@ -61,15 +56,7 @@ services:
     environment:
       TZ: America/New_York
     restart: unless-stopped
-  dhcprelay:
-    build: ./self-made-dhcp-relay
-    container_name: dhcprelay
-    restart: unless-stopped
-    network_mode: host
-    command: -s 172.31.0.100
-    cap_add: [NET_ADMIN]
   pihole:
-    # TODO: migrate pihole and friends to a bridge network 
     env_file: [.env]
     container_name: pihole
     image: pihole/pihole:2025.02.4
@@ -109,7 +96,7 @@ services:
       FTLCONF_dhcp_end: 192.168.1.224
       FTLCONF_dhcp_router: 192.168.1.1
       FTLCONF_dns_listeningMode: all
-    depends_on: [unbound, dhcprelay]
+    depends_on: [unbound]
     volumes: [./etc-pihole:/etc/pihole]
     cap_add:
       - NET_ADMIN  # Required if you are using Pi-hole as your DHCP server, else not needed
