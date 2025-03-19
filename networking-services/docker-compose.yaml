@@ -87,6 +87,13 @@ services:
       - 443:443/tcp
       # Uncomment the below if using Pi-hole as your DHCP Server
       - 67:67/udp
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pihole.rule=Host(`pihole.technolev.work`)
+      - traefik.http.routers.pihole.entrypoints=http
+      - traefik.http.routers.pihole.tls=true
+      - traefik.http.routers.pihole.tls.certresolver=cloudflare
+      - traefik.http.services.pihole.loadbalancer.server.port=80
     networks:
       lev_network:
         ipv4_address: 192.168.1.225  # IP of the pihole container 
