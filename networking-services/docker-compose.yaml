@@ -19,6 +19,7 @@ services:
       - TRAEFIK_DASHBOARD_CREDENTIALS=${TRAEFIK_DASHBOARD_CREDENTIALS}
       - CF_API_EMAIL=${CF_API_EMAIL}
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudfare-token
+    command: ['--certificatesresolvers.cloudflare.acme.email=${CF_API_EMAIL}']
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.entrypoints=http
